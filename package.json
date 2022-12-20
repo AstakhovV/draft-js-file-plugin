@@ -1,5 +1,5 @@
 {
-  "name": "@AstakhovV/draft-js-file-plugin",
+  "name": "draft-js-file-plugin",
   "version": "1.0.14",
   "description": "Draft js file plugin",
   "main": "dist/cjs/index.js",
