@@ -1,0 +1,53 @@
+$text-whitesmoke: #a5a6a6;
+$text-black: #1e2021;
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.fileAttachment {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: $text-whitesmoke;
+
+  &:hover,
+  &:visited {
+    color: $text-whitesmoke;
+    text-decoration: none;
+  }
+}
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  color: $text-whitesmoke;
+}
+
+.extension {
+  position: absolute;
+  right: 0;
+  bottom: var(--base-size);
+  left: 0;
+  color: $text-whitesmoke;
+  font-size: 7px;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: lowercase;
+  text-decoration: none;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    color: $text-black;
+  }
+
+  span {
+    font-size: 13px;
+    color: $text-whitesmoke;
+  }
+}
