@@ -40,22 +40,24 @@ export default React.forwardRef<HTMLAnchorElement, FileProps>(
         const combinedClassName = clsx(styles.fileAttachment, theme.fileAttachment, className);
         const {href, extension, name, size, icon} = contentState.getEntity(block.getEntityAt(0)).getData();
         return (
-            <a
-                target="_blank"
-                ref={ref}
-                href={href}
-                className={combinedClassName}
-                {...elementProps}
-            >
-                <div className={styles.wrapper}>
-                    {icon}
-                    <span className={styles.extension}>{trimExtension(extension)}</span>
-                </div>
-                <div className={styles.name}>
-                    <p>{name}</p>
-                    <span>{size}</span>
-                </div>
-            </a>
+            <div className={styles.fileWrapper}>
+                <a
+                    target="_blank"
+                    ref={ref}
+                    href={href}
+                    className={combinedClassName}
+                    {...elementProps}
+                >
+                    <div className={styles.extensionWrapper}>
+                        {icon}
+                        <span className={styles.extension}>{trimExtension(extension)}</span>
+                    </div>
+                    <div className={styles.name}>
+                        <p>{name}</p>
+                        <span>{size}</span>
+                    </div>
+                </a>
+            </div>
         );
     }
 );

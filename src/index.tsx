@@ -2,7 +2,6 @@ import React, { ComponentType, ReactElement } from 'react';
 import { EditorPlugin } from '@draft-js-plugins/editor';
 import addFile from './modifiers/addFile';
 import FileComponent, { FileProps } from './File';
-import styles from "./File.module.scss";
 
 export interface FilePluginTheme {
     fileAttachment?: string;
@@ -38,7 +37,6 @@ export default (config: FilePluginConfig = {}): FileEditorPlugin => {
                 if (type === 'FILE') {
                     return {
                         component: ThemedFile,
-                        className: styles.container,
                         editable: false,
                     };
                 }
@@ -47,7 +45,6 @@ export default (config: FilePluginConfig = {}): FileEditorPlugin => {
 
             return null;
         },
-        blockStyleFn: () => styles.container,
         addFile,
     };
 };
