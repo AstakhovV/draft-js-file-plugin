@@ -2,6 +2,7 @@ import React, { ComponentType, ReactElement } from 'react';
 import { EditorPlugin } from '@draft-js-plugins/editor';
 import addFile from './modifiers/addFile';
 import FileComponent, { FileProps } from './File';
+import {ATOMIC, FILETYPE} from './types/constant';
 
 export interface FilePluginTheme {
     fileAttachment?: string;
@@ -29,15 +30,21 @@ export default (config: FilePluginConfig = {}): FileEditorPlugin => {
 
     return {
         blockRendererFn: (block, { getEditorState }) => {
-            if (block.getType() === 'atomic') {
+            if (block.getType() === ATOMIC) {
                 const contentState = getEditorState().getCurrentContent();
-                const entity = block.getEntityAt(0);
-                if (!entity) return null;
-                const type = contentState.getEntity(entity).getType();
-                if (type === 'FILE') {
+                const entityKey = block.getEntityAt(0);
+                if (!entityKey) return null;
+                const entity = contentState.getEntity(entityKey);
+                const type = entity.getType();
+                const { data, extraData } = entity.getData();
+                if (type === FILETYPE) {
                     return {
                         component: ThemedFile,
                         editable: false,
+                        props: {
+                            data,
+                            extraData,
+                        }
                     };
                 }
                 return null;

@@ -1,28 +1,24 @@
-import { EditorState, AtomicBlockUtils } from 'draft-js';
+import {EditorState, AtomicBlockUtils, RichUtils} from 'draft-js';
+import {ATOMIC, FILETYPE, AddFileProps} from '../types/constant';
 
 export default (
     editorState: EditorState,
-    href: string,
-    extension: string,
-    name: string,
-    size: string,
-    icon: JSX.Element,
+    data: AddFileProps,
     extraData: Record<string, unknown>
 ): EditorState => {
+    if (RichUtils.getCurrentBlockType(editorState) === ATOMIC) {
+        return editorState;
+    }
     const contentState = editorState.getCurrentContent();
     const contentStateWithEntity = contentState.createEntity(
-        'FILE',
+        FILETYPE,
         'IMMUTABLE',
-        { ...extraData, href, extension, name, size, icon }
+        { ...extraData, ...data }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-    const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+    return  AtomicBlockUtils.insertAtomicBlock(
         editorState,
         entityKey,
         ' '
-    );
-    return EditorState.forceSelection(
-        newEditorState,
-        newEditorState.getCurrentContent().getSelectionAfter()
     );
 };
