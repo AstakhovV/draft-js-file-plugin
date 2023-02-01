@@ -13,7 +13,7 @@ export default (
     const contentStateWithEntity = contentState.createEntity(
         FILETYPE,
         'IMMUTABLE',
-        { ...extraData, ...data }
+        { extraData, data }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
     return  AtomicBlockUtils.insertAtomicBlock(

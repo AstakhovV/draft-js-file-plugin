@@ -7,5 +7,4 @@ export interface AddFileProps {
     name: string,
     size: string,
     icon: JSX.Element,
-    extraData: Record<string, unknown>
 }
