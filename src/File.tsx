@@ -29,14 +29,18 @@ export const trimExtension = (extension: string) => extension.length > 4 ? exten
 export default React.forwardRef<HTMLAnchorElement, FileProps>(
     function File(props, ref): ReactElement {
         const {
-            contentState,
             blockStyleFn,
+            block,
+            contentState,
             customStyleMap,
             customStyleFn,
+            decorator,
             forceSelection,
             offsetKey,
+            selection,
+            tree,
             preventScroll,
-            block, className, theme = {}, blockProps, ...elementProps
+            className, theme = {}, blockProps, ...elementProps
         } = props;
         const combinedClassName = clsx(styles.fileAttachment, theme.fileAttachment, className);
         const {data} = blockProps;
